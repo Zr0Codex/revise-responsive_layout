@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useContext } from 'react';
+import { Input } from 'antd';
 
-function App() {
+// import { useFormateMessage } from './constants/templateMessage';
+import wording from './constants/translate/wording';
+
+const ViewportContext = React.createContext({});
+
+const ViewportPorvider = ({ children }) => {
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const handleWindowsResize = () => {
+    setHeight(window.innerHeight);
+    setWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowsResize);
+    return () => window.removeEventListener('resize', handleWindowsResize);
+  }, []);
+
+  return <ViewportContext.Provider value={{ width, height }}>{children}</ViewportContext.Provider>;
+};
+
+const useViewport = () => {
+  const { width, height } = useContext(ViewportContext);
+  return { width, height };
+};
+
+const LaptopComponent = () => <p>{wording.isLaptop}</p>;
+
+const DesktopComponent = () => <p>{wording.isDesktop}</p>;
+
+const MainLayout = () => {
+  const { width } = useViewport();
+  const breakpoint = 768;
+
+  return width < breakpoint ? <LaptopComponent /> : <DesktopComponent />;
+};
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ViewportPorvider>
+      <MainLayout />
+    </ViewportPorvider>
   );
 }
-
-export default App;
