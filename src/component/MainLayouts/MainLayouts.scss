@@ -1,0 +1,40 @@
+.header-control {
+  background-color: #007bc1;
+}
+
+.Main-layout {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  border-radius: 5px;
+  .container-fluid {
+    padding: 1rem 3rem;
+    display: flex;
+  }
+}
+
+.app-layout {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  border-radius: 5px;
+  .container-fluid {
+    padding: 1rem 3rem;
+    display: flex;
+  }
+}
+
+.ant-layout {
+  border-radius: 10px;
+}
+
+.sider-menu {
+  // margin-left: 15px;
+  width: 256;
+  height: 100vh;
+  float: left;
+}
+
+.conten-layout {
+  height: auto;
+}

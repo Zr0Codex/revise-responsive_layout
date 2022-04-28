@@ -1,0 +1,15 @@
+export default {
+  home_page_wording: "ระบบคลังเอกสารสินไหม",
+  login_footer: "Copyright © 2564, Thai Life Insurance Public Co. Ltd",
+  login_success: "เข้าสู่ระบบสำเสร็จ",
+  logout_success: "ออกจากระบบสำเร็จ",
+  login_failed: "ไม่สามารถเข้าสู่ระบบได้",
+  login_failed_description: "เกิดปัญหาการเชื่อมต่อระบบส่วนกลาง กรุณารอสักครู่",
+  login_warning: "แจ้งเตือน ! ",
+  login_warning_description: "กรุณาตรวจสอบความถูกต้องของข้อมูลอีกครั้ง",
+  login_page_title: "ลงชื่อเข้าใช้งานระบบ",
+  form_notice_message: "กรุณากรอกข้อมูล!",
+  username_placeholder: "รหัสพนักงาน",
+  passWord_placeholder: "รหัสผ่าน",
+  claim_warehouse_title: "คลังเอกสารสินไหม",
+};

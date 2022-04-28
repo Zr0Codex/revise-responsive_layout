@@ -1,0 +1,194 @@
+.app-login {
+  .container-fluid {
+    // @include flex(center, center);
+    position: absolute;
+    min-height: 100vh;
+    // .ant-form {
+    //   width: 100%;
+    //   max-width: 385px;
+    //   .ant-btn-primary {
+    //     width: 100%;
+    //   }
+    // }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #aaa;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #335ddc;
+  border-radius: 8px;
+}
+
+body {
+  font-family: "DBOzoneX";
+}
+
+.login-page {
+  margin-top: 1px;
+  display: inline-flex;
+  width: 100%;
+  height: auto;
+}
+.login-box {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.login-div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-login {
+  float: right;
+  padding-right: 30px;
+  font-size: 22px;
+  font-weight: 100;
+  color: #827f7f;
+}
+
+#login-form {
+  align-items: flex-end;
+  margin: 30px;
+
+  padding: 60px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px #888888;
+}
+#login-form p {
+  margin-bottom: 30px;
+}
+#login-form p.form-title {
+  text-align: center;
+  color: #000000;
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 0;
+}
+#login-form .ant-form-item-label > label.ant-form-item-required::before {
+  display: none;
+}
+.ant-form-item-control-input-content {
+  text-align: center;
+}
+#login-form .ant-input-affix-wrapper {
+  padding: 12px 15px;
+}
+#login-form_username {
+  font-size: 30px;
+  height: 23px;
+  // margin-bottom: 25px;
+}
+#login-form_password {
+  font-size: 30px;
+  height: 23px;
+}
+.login-form-button {
+  margin-top: 120px;
+  text-align: center;
+  width: 140px;
+  height: 55px;
+  letter-spacing: 0px;
+  border-radius: 1px;
+  font-size: 30px;
+  background: #007bc1;
+}
+
+.illustration-wrapper {
+  width: 50%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+}
+.illustration-wrapper img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+// @media screen and (max-width: 1023px) {
+//   .login-box {
+//     flex-direction: column;
+//     box-shadow: none;
+//   }
+//   .illustration-wrapper img {
+//     min-height: auto;
+//   }
+//   #login-form {
+//     max-width: 100%;
+//     margin-top: 5px;
+//     margin-bottom: 20px;
+//     margin-right: 0px;
+//     margin-left: 0px;
+//   }
+// }
+
+// @media screen and (max-width: 768px) {
+//   .login-box {
+//     flex-direction: column;
+//     box-shadow: none;
+//   }
+//   // .illustration-wrapper {
+//   //   display: none;
+//   // }
+//   .illustration-wrapper img {
+//     min-height: 628px;
+//   }
+//   #login-form {
+//     max-width: 100%;
+//   }
+// }
+
+// @media screen and (min-width: 768px) {
+//   // .login-box {
+//   //   flex-direction: column;
+//   //   box-shadow: none;
+//   // }
+//   // .illustration-wrapper {
+//   //   display: none;
+//   // }
+//   .illustration-wrapper img {
+//     max-height: 628px;
+//   }
+//   // #login-form {
+//   //   max-width: 100%;
+//   // }
+// }
+
+// @media screen and (min-width: 720px) {
+//   // .login-box {
+//   //   flex-direction: column;
+//   //   box-shadow: none;
+//   // }
+//   // .illustration-wrapper {
+//   //   display: none;
+//   // }
+//   .illustration-wrapper img {
+//     max-height: auto;
+//   }
+//   // #login-form {
+//   //   max-width: 100%;
+//   // }
+// }
+
+// @media screen and (max-width: 710px) {
+//   .illustration-wrapper {
+//     display: none;
+//   }
+// }
