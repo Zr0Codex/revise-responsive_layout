@@ -13,7 +13,7 @@ import {
   UsergroupAddOutlined,
 } from "@ant-design/icons";
 
-import { find_document, registration, user_group } from "../pages";
+import { FindDocument, registration, user_group } from "../pages";
 
 const HomeRoutes = {
   sub_menu: [
@@ -30,7 +30,7 @@ const HomeRoutes = {
       Id: 2,
       icon: <SecurityScanOutlined />,
       path: "/home/search_document_user",
-      component: find_document,
+      component: FindDocument,
       wording: "ค้นหาเอกสาร <br/> (สำหรับผู้ขอเบิกเอกสาร)",
       menu_wording: "ค้นหาเอกสาร / ขอเบิกเอกสาร",
       menu_id: "MWH1002",

@@ -8,12 +8,12 @@ import {
   InfoCircleOutlined,
 } from "@ant-design/icons";
 
-notification.config({
-  placement: "topRight",
-  top: 30,
-  duration: 3,
-  rtl: true,
-});
+// notification.config({
+//   placement: "topRight",
+//   top: 30,
+//   duration: 3,
+//   rtl: true,
+// });
 
 const Notification = (type, props) => {
   if (props === "login_success") {

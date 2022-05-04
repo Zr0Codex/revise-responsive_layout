@@ -33,7 +33,7 @@ const MainLayouts = (props) => {
           </div>
         )}
         <div className="conten-layout">{props.children}</div>
-        <MianFooter />
+        {props.isFooter && <MianFooter />}
       </main>
     </>
   );

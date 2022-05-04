@@ -107,9 +107,39 @@ header {
   // justify-content: flex-end;
 }
 
+.header-user-span {
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
 .header-user-container-normal {
   float: inline-end;
   width: 260px;
   height: 65px;
   display: flex;
+}
+.navbar-collapse {
+  justify-content: end;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+// .user-container-collapse {
+//   // border: 1px solid #ffffff;
+//   // border-radius: 3px;
+// }
+
+.text_menu_span {
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 20px;
+  align-items: center;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 700px) {
+  .user-container-collapse {
+    display: none;
+  }
 }

@@ -37,35 +37,13 @@ const CustomHeader = (props) => {
   const usermenu = (
     <Menu>
       <Menu.Item key="0" icon={<IdcardOutlined />}>
-        <Link to="/page-1">
-          <span
-            style={{
-              fontFamily: "DBOzoneX",
-              marginLeft: "20px",
-              marginTop: "10px",
-              fontSize: "20px",
-              alignItems: "center",
-              textDecoration: "none",
-            }}
-          >
-            โพรไฟล์
-          </span>
+        <Link to="/page-1" className="text_menu_span">
+          {wording.profile_wording}
         </Link>
       </Menu.Item>
       <Menu.Item key="1" icon={<LogoutOutlined />}>
-        <Link onClick={() => onPresLogout()} to="/">
-          <span
-            style={{
-              fontFamily: "DBOzoneX",
-              marginLeft: "20px",
-              marginTop: "10px",
-              fontSize: "20px",
-              alignItems: "center",
-              textDecoration: "none",
-            }}
-          >
-            ออกจากระบบ
-          </span>
+        <Link onClick={() => onPresLogout()} to="/" className="text_menu_span">
+          {wording.logout_wording}
         </Link>
       </Menu.Item>
     </Menu>
@@ -105,30 +83,20 @@ const CustomHeader = (props) => {
           </span>
         </Link>
         <Navbar.Toggle />
-        <Navbar.Collapse
-          className="justify-content-end"
-          style={{ marginLeft: "20px", marginRight: "10px" }}
-        >
+        <Navbar.Collapse className="navbar-collapse">
           <Navbar.Text>
             <Space>
-              <span
-                style={{
-                  justifyContent: "center",
-                  fontSize: "22px",
-                  alignItems: "center",
-                }}
-              >
-                {name}
-              </span>
-              <img src={profile} alt="React Logo" />
-
-              <Dropdown
-                overlay={usermenu}
-                placement="bottomLeft"
-                trigger={["click"]}
-              >
-                <img src={DropdownIcon} alt="React Logo" />
-              </Dropdown>
+              <div>
+                <span className="header-user-span">{name + " "}</span>
+                <Dropdown
+                  overlay={usermenu}
+                  placement="bottomLeft"
+                  trigger={["click"]}
+                >
+                  <img src={profile} alt="React Logo" />
+                  {/* <img src={DropdownIcon} alt="React Logo" /> */}
+                </Dropdown>
+              </div>
             </Space>
           </Navbar.Text>
         </Navbar.Collapse>
