@@ -1,77 +1,30 @@
-import React, { useState } from "react";
-import { Input, Button, Space, Form } from "antd";
-import wording from "../../util/wording";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import React, { useState, useEffect } from "react";
+import { Input, Button, Space } from "antd";
+import {
+  DeleteOutlined,
+  PlusCircleOutlined,
+  SaveFilled,
+} from "@ant-design/icons";
 import "./FindDocument.style.scss";
+import { MultiSelect } from "react-multi-select-component";
 
-// const { Search } = Input;
+import FilterOptions from "../../util/FilterOptions";
+import { MainFilterSearch } from "../../component";
 
 const FindDocument = () => {
-  const [formValues, setFormValues] = useState([{ name: "", email: "" }]);
-
-  let handleChange = (i, e) => {
-    let newFormValues = [...formValues];
-    newFormValues[i][e.target.name] = e.target.value;
-    setFormValues(newFormValues);
-  };
-
-  let addFormFields = () => {
-    setFormValues([...formValues, { name: "", email: "" }]);
-  };
-
-  let removeFormFields = (i) => {
-    let newFormValues = [...formValues];
-    newFormValues.splice(i, 1);
-    setFormValues(newFormValues);
-  };
-
-  let handleSubmit = (event) => {
-    event.preventDefault();
-    alert(JSON.stringify(formValues));
-  };
+  let defaultFields = [
+    {
+      label: "เลขที่เรื่องสินไหม",
+      value: "เลขที่เรื่องสินไหม",
+      name: "",
+      disabled: false,
+    },
+  ];
 
   return (
-    <form onSubmit={handleSubmit}>
-      {formValues.map((element, index) => (
-        <div className="form-inline" key={index}>
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={element.name || ""}
-            onChange={(e) => handleChange(index, e)}
-          />
-          <label>Email</label>
-          <input
-            type="text"
-            name="email"
-            value={element.email || ""}
-            onChange={(e) => handleChange(index, e)}
-          />
-          {index ? (
-            <button
-              type="button"
-              className="button remove"
-              onClick={() => removeFormFields(index)}
-            >
-              Remove
-            </button>
-          ) : null}
-        </div>
-      ))}
-      <div className="button-section">
-        <button
-          className="button add"
-          type="button"
-          onClick={() => addFormFields()}
-        >
-          Add
-        </button>
-        <button className="button submit" type="submit">
-          Submit
-        </button>
-      </div>
-    </form>
+    <>
+      <MainFilterSearch defaultFields={defaultFields} />
+    </>
   );
 };
 
