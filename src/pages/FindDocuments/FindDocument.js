@@ -17,6 +17,7 @@ const FindDocument = () => {
       label: "เลขที่เรื่องสินไหม",
       value: "เลขที่เรื่องสินไหม",
       name: "",
+      type: "Input",
       disabled: false,
     },
   ];

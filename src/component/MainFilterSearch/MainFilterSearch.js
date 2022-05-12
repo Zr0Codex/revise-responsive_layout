@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Input, Button, Space } from "antd";
+import { Input, Button, Space, DatePicker, Tag } from "antd";
 import {
   DeleteOutlined,
   PlusCircleOutlined,
@@ -12,6 +12,10 @@ import FilterOptions from "../../util/FilterOptions";
 
 const MainFilterSearch = (props) => {
   const [selected, setSelected] = useState(props.defaultFields);
+
+  const [dateSelected, setDateSelected] = useState([]);
+  const [input, setInput] = useState([]);
+  const [dropDown, setDropdown] = useState([]);
 
   useEffect(() => {
     FilterOptions.map((option) => {
@@ -46,18 +50,46 @@ const MainFilterSearch = (props) => {
     console.log(JSON.stringify(selected));
   };
 
+  function onChange(date, dateString, index) {
+    let newFormValues = [...selected];
+    console.log("dateString: ", dateString);
+    console.log("form values: ", newFormValues);
+    newFormValues[index]["name"] = dateString;
+    setSelected(newFormValues);
+  }
+
+  const isInput = "Input";
+  const isDatePicker = "Datepicker";
+  const isDropDown = "Dropdown";
+
   return (
     <form onSubmit={handleSubmit}>
       {selected.map((element, index) => (
         <>
           <div className="search-box-position ">
-            <Input
-              className="input-width"
-              addonBefore={element.label}
-              name="name"
-              value={element.name || ""}
-              onChange={(e) => handleChange(index, e)}
-            />
+            {element.type === isInput && (
+              <Input
+                className="input-width"
+                addonBefore={element.label}
+                name="name"
+                value={element.name || ""}
+                onChange={(e) => handleChange(index, e)}
+              />
+            )}
+
+            {element.type === isDatePicker && (
+              <>
+                <Space>
+                  <label className="input-width-datepicker">{`${element.label} : `}</label>
+                  <DatePicker
+                    className="datepicker-width"
+                    onChange={(date, dateString) =>
+                      onChange(date, dateString, index)
+                    }
+                  />
+                </Space>
+              </>
+            )}
 
             {index ? (
               <Button
