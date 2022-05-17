@@ -22,4 +22,5 @@ export default {
   action_username: "ผู้จัดเก็บ",
   action_date: "วันที่จัดเก็บ",
   claim_status: "สถานะ",
+  please_select: "กรุณาเลือก",
 };

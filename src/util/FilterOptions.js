@@ -33,7 +33,7 @@ const FilterOptions = [
     label: "ประเภทเอกสาร",
     value: "ประเภทเอกสาร",
     name: "",
-    type: "Dropdown",
+    type: "DocType-Dropdown",
     disabled: false,
   },
   {

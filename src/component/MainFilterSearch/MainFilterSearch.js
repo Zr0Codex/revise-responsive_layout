@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Input, Button, Space, DatePicker, Tag } from "antd";
+import { Input, Button, Space, DatePicker, Dropdown, Menu } from "antd";
 import {
   DeleteOutlined,
   PlusCircleOutlined,
   SaveFilled,
+  DownOutlined,
 } from "@ant-design/icons";
 import "./MainFilterSearch.style.scss";
 import { MultiSelect } from "react-multi-select-component";
+import axios from "axios";
+
+// import { useHistory } from "react-router-dom";
 
 import FilterOptions from "../../util/FilterOptions";
+import menu_doctype from "./menu_doctype";
+import wording from "../../util/wording";
+import { response } from "express";
 
 const MainFilterSearch = (props) => {
-  const [selected, setSelected] = useState(props.defaultFields);
+  // let history = useHistory();
 
-  const [dateSelected, setDateSelected] = useState([]);
-  const [input, setInput] = useState([]);
-  const [dropDown, setDropdown] = useState([]);
+  const [selected, setSelected] = useState(props.defaultFields);
+  const [doctype, setDoctype] = useState([]);
 
   useEffect(() => {
     FilterOptions.map((option) => {
@@ -26,6 +32,28 @@ const MainFilterSearch = (props) => {
       });
     });
   }, [FilterOptions]);
+
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_API_ENDPOINT_GET_CONFIGURATION_DOCTYPE)
+      .then((response) => {
+        setDoctype(response.data);
+      })
+      .catch(console.error(response));
+  }, [doctype]);
+
+  console.log("get doctype: ", doctype);
+  const doctype_menu = (
+    <>
+      {menu_doctype.map((data) => {
+        return (
+          <Menu>
+            <Menu.Item>{data.menu}</Menu.Item>
+          </Menu>
+        );
+      })}
+    </>
+  );
 
   let handleChange = (i, e) => {
     let newFormValues = [...selected];
@@ -60,7 +88,8 @@ const MainFilterSearch = (props) => {
 
   const isInput = "Input";
   const isDatePicker = "Datepicker";
-  const isDropDown = "Dropdown";
+  const isDropDownDocType = "DocType-Dropdown";
+  const isDateRange = "Rangepicke";
 
   return (
     <form onSubmit={handleSubmit}>
@@ -87,6 +116,26 @@ const MainFilterSearch = (props) => {
                       onChange(date, dateString, index)
                     }
                   />
+                </Space>
+              </>
+            )}
+
+            {element.type === isDropDownDocType && (
+              <>
+                <Space>
+                  <label className="input-width-doctype">{`${element.label} : `}</label>
+                  <Dropdown
+                    className="selected-width-doctype"
+                    overlayClassName="subselected-menu"
+                    overlay={doctype_menu}
+                    trigger={["click"]}
+                    placement="bottomLeft"
+                    arrow
+                  >
+                    <Button>
+                      <Space>{wording.please_select}</Space>
+                    </Button>
+                  </Dropdown>
                 </Space>
               </>
             )}
@@ -161,6 +210,9 @@ const MainFilterSearch = (props) => {
                 }}
               />
             }
+            // onClick={() => {
+            //   history.push("/home/registration_document");
+            // }}
           >
             Save
           </Button>
