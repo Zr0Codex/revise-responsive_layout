@@ -6,7 +6,7 @@ import { withRouter, Link } from "react-router-dom";
 import parse from "html-react-parser";
 import { FullscreenOutlined, FullscreenExitOutlined } from "@ant-design/icons";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider } = Layout;
 const CustomSider = () => {
   const [collapsed, setCollapsed] = useState(false);
 

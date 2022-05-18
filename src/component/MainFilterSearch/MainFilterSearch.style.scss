@@ -28,15 +28,23 @@ body {
 }
 
 .datepicker-width {
-  width: 202px;
+  width: 310px;
   height: 32px;
   font-size: 18px;
+  text-align: center;
 }
 
 .input-width-datepicker {
   padding: 10px;
   font-size: 18px;
   width: 100px;
+  height: 32px;
+}
+
+.input-label-width {
+  padding: 10px;
+  font-size: 18px;
+  width: 130px;
   height: 32px;
 }
 

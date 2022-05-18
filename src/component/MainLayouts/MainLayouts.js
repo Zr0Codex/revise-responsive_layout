@@ -5,16 +5,16 @@ import CustomHeader from "../MainHeaders/MainHeaders";
 import MianFooter from "../MainFooters/Footer";
 import CustomSider from "../MainSiders/MainSider";
 
-import { Layout, Menu } from "antd";
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
+// import { Layout } from "antd";
+// import {
+//   MenuUnfoldOutlined,
+//   MenuFoldOutlined,
+//   UserOutlined,
+//   VideoCameraOutlined,
+//   UploadOutlined,
+// } from "@ant-design/icons";
 
-const { Header, Sider, Content } = Layout;
+// const { Header, Sider, Content } = Layout;
 
 // const { Header, Content, Sider } = Layout;
 

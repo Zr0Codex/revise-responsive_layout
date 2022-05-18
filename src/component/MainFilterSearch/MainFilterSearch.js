@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Input, Button, Space, DatePicker, Dropdown, Menu } from "antd";
+import { Input, Button, Space, DatePicker, Select } from "antd";
 import {
   DeleteOutlined,
   PlusCircleOutlined,
   SaveFilled,
-  DownOutlined,
 } from "@ant-design/icons";
 import "./MainFilterSearch.style.scss";
 import { MultiSelect } from "react-multi-select-component";
 import axios from "axios";
 
-// import { useHistory } from "react-router-dom";
-
 import FilterOptions from "../../util/FilterOptions";
-import menu_doctype from "./menu_doctype";
 import wording from "../../util/wording";
-import { response } from "express";
+
+const { Option } = Select;
+const { RangePicker } = DatePicker;
 
 const MainFilterSearch = (props) => {
-  // let history = useHistory();
-
   const [selected, setSelected] = useState(props.defaultFields);
+
   const [doctype, setDoctype] = useState([]);
+  const [docstatus, setDocStatus] = useState([]);
 
   useEffect(() => {
     FilterOptions.map((option) => {
@@ -34,26 +32,36 @@ const MainFilterSearch = (props) => {
   }, [FilterOptions]);
 
   useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_API_ENDPOINT_GET_CONFIGURATION_DOCTYPE)
-      .then((response) => {
-        setDoctype(response.data);
-      })
-      .catch(console.error(response));
-  }, [doctype]);
+    const FetchDOCTYPE = async () => {
+      try {
+        await axios
+          .get(process.env.REACT_APP_API_ENDPOINT_GET_CONFIGURATION_DOCTYPE)
+          .then((response) => {
+            setDoctype(response.data.menu_doctype);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  console.log("get doctype: ", doctype);
-  const doctype_menu = (
-    <>
-      {menu_doctype.map((data) => {
-        return (
-          <Menu>
-            <Menu.Item>{data.menu}</Menu.Item>
-          </Menu>
-        );
-      })}
-    </>
-  );
+    FetchDOCTYPE();
+  }, []);
+
+  useEffect(() => {
+    const FetchDOCSTATUS = async () => {
+      try {
+        await axios
+          .get(process.env.REACT_APP_API_ENDPOINT_GET_CONFIGURATION_DOCSTATUS)
+          .then((response) => {
+            setDocStatus(response.data.status_doctype);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    FetchDOCSTATUS();
+  }, []);
 
   let handleChange = (i, e) => {
     let newFormValues = [...selected];
@@ -75,7 +83,68 @@ const MainFilterSearch = (props) => {
 
   let handleSubmit = (event) => {
     event.preventDefault();
-    console.log(JSON.stringify(selected));
+
+    const generateFinalData = {
+      claim_no: "",
+      claim_box_no: "",
+      insurance_no: "",
+      warehouse_box_no: "",
+      document_type: "",
+      user_id: "",
+      collecting_date: "",
+      document_status: "",
+      searching_range: "",
+    };
+
+    selected.map((value) => {
+      if (value.value === "เลขที่เรื่องสินไหม") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.claim_no = value.name;
+        }
+      }
+      if (value.value === "เลขที่กรมธรรม์") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.insurance_no = value.name;
+        }
+      }
+      if (value.value === "เลขที่กล่องสินไหม") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.claim_box_no = value.name;
+        }
+      }
+      if (value.value === "เลขที่กล่องคลัง") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.warehouse_box_no = value.name;
+        }
+      }
+      if (value.value === "ประเภทเอกสาร") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.document_type = value.name;
+        }
+      }
+      if (value.value === "รหัสผู้จัดเก็บ") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.user_id = value.name;
+        }
+      }
+      if (value.value === "วันที่จัดเก็บ") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.collecting_date = value.name;
+        }
+      }
+      if (value.value === "สถานะเอกสาร") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.document_status = value.name;
+        }
+      }
+      if (value.value === "ช่วงที่ต้องการค้นหา") {
+        if (value.name !== "" || value.name !== null) {
+          generateFinalData.searching_range = value.name;
+        }
+      }
+    });
+
+    console.log(generateFinalData);
   };
 
   function onChange(date, dateString, index) {
@@ -86,9 +155,18 @@ const MainFilterSearch = (props) => {
     setSelected(newFormValues);
   }
 
+  function onSelectionChange(index, value) {
+    let newFormValues = [...selected];
+    console.log("index:", index);
+    console.log("value: ", value);
+    newFormValues[index]["name"] = value;
+    setSelected(newFormValues);
+  }
+
   const isInput = "Input";
   const isDatePicker = "Datepicker";
   const isDropDownDocType = "DocType-Dropdown";
+  const isDropDownDocStatus = "DocStatus-Dropdown";
   const isDateRange = "Rangepicke";
 
   return (
@@ -97,19 +175,24 @@ const MainFilterSearch = (props) => {
         <>
           <div className="search-box-position ">
             {element.type === isInput && (
-              <Input
-                className="input-width"
-                addonBefore={element.label}
-                name="name"
-                value={element.name || ""}
-                onChange={(e) => handleChange(index, e)}
-              />
+              <>
+                <Space>
+                  <label className="input-label-width">{`${element.label} : `}</label>
+                  <Input
+                    className="input-width"
+                    // addonBefore={element.label}
+                    name="name"
+                    value={element.name || ""}
+                    onChange={(e) => handleChange(index, e)}
+                  />
+                </Space>
+              </>
             )}
 
             {element.type === isDatePicker && (
               <>
                 <Space>
-                  <label className="input-width-datepicker">{`${element.label} : `}</label>
+                  <label className="input-label-width">{`${element.label} : `}</label>
                   <DatePicker
                     className="datepicker-width"
                     onChange={(date, dateString) =>
@@ -123,19 +206,64 @@ const MainFilterSearch = (props) => {
             {element.type === isDropDownDocType && (
               <>
                 <Space>
-                  <label className="input-width-doctype">{`${element.label} : `}</label>
-                  <Dropdown
-                    className="selected-width-doctype"
-                    overlayClassName="subselected-menu"
-                    overlay={doctype_menu}
-                    trigger={["click"]}
-                    placement="bottomLeft"
-                    arrow
+                  <label className="input-label-width">{`${element.label} : `}</label>
+
+                  <Select
+                    className="datepicker-width"
+                    placeholder={wording.please_select}
+                    // style={{ width: 200, height: 32, fontSize: 18 }}
+                    onChange={(value) => {
+                      onSelectionChange(index, value);
+                    }}
                   >
-                    <Button>
-                      <Space>{wording.please_select}</Space>
-                    </Button>
-                  </Dropdown>
+                    {doctype.map((data) => {
+                      return (
+                        <>
+                          <Option value={data.menu}>{data.menu}</Option>
+                        </>
+                      );
+                    })}
+                  </Select>
+                </Space>
+              </>
+            )}
+
+            {element.type === isDropDownDocStatus && (
+              <>
+                <Space>
+                  <label className="input-label-width">{`${element.label} : `}</label>
+
+                  <Select
+                    className="datepicker-width"
+                    placeholder={wording.please_select}
+                    // style={{ width: 200, height: 32, fontSize: 18 }}
+                    onChange={(value) => {
+                      onSelectionChange(index, value);
+                    }}
+                  >
+                    {docstatus.map((data) => {
+                      return (
+                        <>
+                          <Option value={data.menu}>{data.menu}</Option>
+                        </>
+                      );
+                    })}
+                  </Select>
+                </Space>
+              </>
+            )}
+
+            {element.type === isDateRange && (
+              <>
+                <Space>
+                  <label className="input-label-width">{`${element.label} : `}</label>
+
+                  <RangePicker
+                    className="datepicker-width"
+                    onChange={(date, dateString) =>
+                      onChange(date, dateString, index)
+                    }
+                  />
                 </Space>
               </>
             )}

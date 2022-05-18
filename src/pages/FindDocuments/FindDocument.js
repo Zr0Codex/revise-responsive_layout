@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Input, Button, Space } from "antd";
-import {
-  DeleteOutlined,
-  PlusCircleOutlined,
-  SaveFilled,
-} from "@ant-design/icons";
+import React from "react";
+// import { Input, Button, Space } from "antd";
+// import {
+//   DeleteOutlined,
+//   PlusCircleOutlined,
+//   SaveFilled,
+// } from "@ant-design/icons";
 import "./FindDocument.style.scss";
-import { MultiSelect } from "react-multi-select-component";
+// import { MultiSelect } from "react-multi-select-component";
 
-import FilterOptions from "../../util/FilterOptions";
+// import FilterOptions from "../../util/FilterOptions";
 import { MainFilterSearch } from "../../component";
 
 const FindDocument = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button } from "antd";
 import { login } from "../../middleware/authen.service";
 import loginPicture from "../../assets/pictures/loginPictureFull.png";
 import { UserOutlined } from "@ant-design/icons";

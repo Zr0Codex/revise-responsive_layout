@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import MainLayouts from "./component/MainLayouts/MainLayouts";
 
 import PublicRoute from "./hooks/PublicRoute";
@@ -9,13 +9,13 @@ import HomeRoutes from "./util/HomeRoutes";
 import { Layout, Menu } from "antd";
 
 import { UserContext } from "./hooks/UserContext";
-import { Route, Switch, Link, useLocation } from "react-router-dom";
+import { Switch, Link, useLocation } from "react-router-dom";
 
 import parse from "html-react-parser";
 import { FullscreenOutlined, FullscreenExitOutlined } from "@ant-design/icons";
 import wording from "./util/wording";
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 function replaceString(string) {
   let regex = string.replace("<br/>", "/");
@@ -30,10 +30,10 @@ function App(props) {
 
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
-  const isMiniMonitor = useMediaQuery({ query: "(min-width: 1024px)" });
-  const isLaptop = useMediaQuery({ query: "(min-width: 1366px)" });
-  const isBigScreen = useMediaQuery({ query: "(min-width: 1600px)" });
-  const isSmallMonitor = useMediaQuery({ query: "(min-width: 720px)" });
+  // const isMiniMonitor = useMediaQuery({ query: "(min-width: 1024px)" });
+  // const isLaptop = useMediaQuery({ query: "(min-width: 1366px)" });
+  // const isBigScreen = useMediaQuery({ query: "(min-width: 1600px)" });
+  // const isSmallMonitor = useMediaQuery({ query: "(min-width: 720px)" });
 
   const [collapsed, setCollapsed] = useState(false);
 

@@ -1,6 +1,6 @@
 import React from "react";
-import wording from "../../util/wording";
-import CustomLayout from "../../component/MainLayouts/MainLayouts";
+// import wording from "../../util/wording";
+// import CustomLayout from "../../component/MainLayouts/MainLayouts";
 
 const HomePage = () => {
   return (

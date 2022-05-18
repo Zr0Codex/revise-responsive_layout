@@ -1,5 +1,3 @@
-import React from "react";
-
 const FilterOptions = [
   {
     label: "เลขที่เรื่องสินไหม",
@@ -54,14 +52,14 @@ const FilterOptions = [
     label: "สถานะเอกสาร",
     value: "สถานะเอกสาร",
     name: "",
-    type: "Dropdown",
+    type: "DocStatus-Dropdown",
     disabled: false,
   },
   {
     label: "ช่วงที่ต้องการค้นหา",
     value: "ช่วงที่ต้องการค้นหา",
     name: "",
-    type: "DatePicker",
+    type: "Rangepicke",
     disabled: false,
   },
 ];

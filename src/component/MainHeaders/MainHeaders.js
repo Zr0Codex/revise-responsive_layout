@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { logout, isLogin } from "../../middleware/authen.service";
 import { Menu, Dropdown, Space } from "antd";
-import { Navbar, Container } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 // import LOGO_HEADER from "../../assets/icons/LOGO-THAILIFE-2.svg";
 import { Link } from "react-router-dom";
 import profile from "../../assets/icons/profile.svg";
 import { LogoutOutlined, IdcardOutlined } from "@ant-design/icons";
-import DropdownIcon from "../../assets/icons/DropdownIcons.svg";
+// import DropdownIcon from "../../assets/icons/DropdownIcons.svg";
 // import LOGO_HUGE from "../../assets/icons/LOGO-THAILIFEE-BIGPICTURE.svg";
 import LOGO_V2 from "../../assets/icons/LOGO-THAILIFEV2.jpg";
 import LOGO_Normal from "../../assets/icons/LOGO-THAILIFE.png";

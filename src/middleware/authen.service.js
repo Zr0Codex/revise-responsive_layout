@@ -1,8 +1,8 @@
 /* Authetifacation actions */
 // import { message, notification } from "antd";
 import axios from "axios";
-import wording from "../util/wording";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+// import wording from "../util/wording";
+// import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Notification } from "../component";
 // import React, { useEffect, useState } from 'react'
 // LOGIN
